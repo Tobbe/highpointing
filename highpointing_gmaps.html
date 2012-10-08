@@ -1,6 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-        "http://www.w3.org/TR/html4/strict.dtd">
-
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-15" />
@@ -75,10 +73,6 @@
             }
 
             return icons[iconColor+iconLetter];
-        }
-
-        function getLatLong(highpoint) {
-            return highpoint[0];
         }
 
         // Marker sizes are expressed as a Size of X,Y
@@ -205,10 +199,6 @@
                 }
             }
         }
-
-        /*createMarker(map, getLatLong(highpointChunks[i - 1][j - 1]),
-                highpointChunks[i - 1][j - 1][2], "Landskap: " + highpointChunks[i - 1][j - 1][3], "green",
-                character(markerCount++));*/
 
         function character(index) {
             return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(index);
