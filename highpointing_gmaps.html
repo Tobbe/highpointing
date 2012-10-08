@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-15" />
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <style type="text/css">
+        html, body, #map_canvas { margin: 0; padding: 0; height: 100% }
+    </style>
+    <script type="text/javascript">
+    var highpointsRaw = [
+        // lat      long       name                      province
+        [56.065200, 13.138250, 'Magleröd, Söderåsen',    'Skåne'],
+        [56.375567, 13.040200, 'Högalteknall',           'Halland'],
+        [56.440850, 14.528467, 'Rävabacken',             'Blekinge'],
+        [56.770157, 16.595883, 'Rösslösa',               'Öland'],
+        [57.332150, 18.337100, 'Lojstahajd',             'Gotland'],
+        [57.768217, 15.242050, 'Stenabo',                'Östergötland'],
+        [57.500317, 14.470083, 'Tomtabacken',            'Småland'],
+        [57.784283, 13.550367, 'Galtåsen',               'Västergötland'],
+        [59.012633, 11.402850, 'Björnerödspiggen',       'Bohuslän'],
+        [59.084767, 12.472117, 'Baljåsen',               'Dalslands'],
+        [59.384100, 14.972083, 'Kilsbergen (Tomasboda)', 'Närke'],
+        [58.790733, 16.327733, 'Skogsbyås',              'Södermanland'],
+        [59.971100, 17.088183, 'Tallmossen',             'Uppland'],
+        [60.095367, 14.916400, 'Fjällberget',            'Västmanland'],
+        [60.897467, 12.742050, 'Granberget, Höljes',     'Värmland'],
+        [60.991850, 16.131217, 'Lustigknopp',            'Gästrikland'],
+        [61.896317, 14.807433, 'Granåsen (Garpknölen)',  'Hälsingland'],
+    /*
+        [62.120733, 12.451333, 'Storvätteshågna',        'Dalarna'], // Grövelsjön, Sweden
+        [62.904000, 12.453000, 'Helagsfjället',          'Härjedalen'], // Ljungdalen, Sweden
+        [62.467033, 15.074567, 'Myckelmyrberget',        'Medelpad'],
+        [63.021717, 12.199417, 'Storsylen Rr 155B',      'Jämtland'], // Storulvåns fjällstation, Duved, Sverige
+        [64.234067, 15.933500, 'Tåsjöberget',            'Ångermanland'],
+        [65.043200, 19.005950, 'Åmliden',                'Västerbotten'],
+        [65.982967, 20.319133, 'Vitberget',              'Norrbotten'],
+        [67.900900, 18.517350, 'Kebnekaise',             'Lappland'], // Nikkaluokta, Sweden
+    */
+    ];
+
+    var stepDisplay;
+    var map;
+    var mapOptions = { mapTypeId: google.maps.MapTypeId.ROADMAP };
+
+    function initialize() {
+        var highpoints = [];
+        highpointsRaw.forEach(function (highpoint, index) {
+            var location = new google.maps.LatLng(highpoint[0], highpoint[1]);
+            highpoints[index] = {
+                location: location,
+                visit_order: index,
+                name: highpoint[2],
+                province: highpoint[3]
+            };
+        });
+
+        var icons = new Array();
+
+        function getMarkerImage(iconColor, iconLetter) {
+            if ((typeof(iconColor)=="undefined") || (iconColor==null)) {
+                iconColor = "red";
+            }
+
+            if (!icons[iconColor+iconLetter]) {
+                icons[iconColor+iconLetter] = new google.maps.MarkerImage("http://www.google.com/mapfiles/marker_" + iconColor + iconLetter + ".png",
+                // This marker is 32 pixels wide by 32 pixels tall.
+                new google.maps.Size(32, 32),
+                // The origin for this image is 0,0.
+                new google.maps.Point(0,0),
+                // The anchor for this image is at 16,32.
+                new google.maps.Point(16, 32));
+            }
+
+            return icons[iconColor+iconLetter];
+        }
+
+        function getLatLong(highpoint) {
+            return highpoint[0];
+        }
+
+        // Marker sizes are expressed as a Size of X,Y
+        // where the origin of the image (0,0) is located
+        // in the top left of the image.
+         
+        // Origins, anchor positions and coordinates of the marker
+        // increase in the X direction to the right and in
+        // the Y direction down.
+
+        var iconShadow = new google.maps.MarkerImage('http://maps.google.com/mapfiles/ms/micons/msmarker.shadow.png',
+            // The shadow image is larger in the horizontal dimension
+            // while the position and offset are the same as for the main image.
+            new google.maps.Size(59, 32),
+            new google.maps.Point(0,0),
+            new google.maps.Point(16, 32));
+            // Shapes define the clickable region of the icon.
+            // The type defines an HTML <area> element 'poly' which
+            // traces out a polygon as a series of X,Y points. The final
+            // coordinate closes the poly by connecting to the first
+            // coordinate.
+        var iconShape = {
+            coord: [19,0, 24,5, 24,12, 23,13, 23,14, 20,17, 20,18, 19,19, 19,20,
+                    18,21, 18,22, 17,23, 17,26, 16,27, 16,31, 14,31, 14,26, 13,25,
+                    13,23, 12,22, 12,20, 10,18, 10,17, 7,14, 7,13, 6,12, 6,6, 7,5,
+                    7,4, 11,0],
+            type: 'poly'
+        };
+
+        var infowindow = new google.maps.InfoWindow({
+            size: new google.maps.Size(150,50)
+        });
+       
+        function createMarker(map, latlng, label, html, color, letter) {
+            var contentString = '<b>'+label+'</b><br>'+html;
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                shadow: iconShadow,
+                icon: getMarkerImage(color, letter),
+                shape: iconShape,
+                title: label,
+                zIndex: Math.round(latlng.lat()*-100000)<<5
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent(contentString);
+                infowindow.open(map, marker);
+            });
+            
+            return marker;
+        }
+
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        directionsService = new google.maps.DirectionsService();
+        stepDisplay = new google.maps.InfoWindow();
+        var marker;
+        var highpointChunks = highpoints.chunk(6);
+        var directionsDisplays = new Array(highpointChunks.length);
+        var routesCreated = 0;
+
+        for (var i = 0; i < highpointChunks.length; ++i) {
+            directionsDisplays[i] = new google.maps.DirectionsRenderer({
+                suppressMarkers: true,
+                //suppressInfoWindows: false*/
+            });
+
+            directionsDisplays[i].setMap(map);
+
+            if (i < highpointChunks.length - 1) {
+                // Add the first item of the next chunk as the last item in
+                // this chunk to create a continuous route
+                highpointChunks[i].push(highpointChunks[i + 1][0]);
+            }
+
+            var waypnts = new Array(highpointChunks[i].length - 1);
+            for (var j = 0; j < highpointChunks[i].length - 1; ++j) {
+                waypnts[j] = {
+                    location: highpointChunks[i][j + 1].location,
+                    stopover: true
+                };
+            }
+
+            var request = {
+                origin: highpointChunks[i][0].location,
+                waypoints: waypnts,
+                destination: highpointChunks[i][highpointChunks[i].length - 1].location,
+                travelMode: google.maps.DirectionsTravelMode.DRIVING
+            };
+
+            directionsService.route(request, function (i) { return function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplays[i].setDirections(response);
+                    var route = response.routes[0];
+                    if (route.legs.length != highpointChunks[i].length) {
+                        alert("Yor code is broken. " + highpointChunks[i].length + " legs expected. Got " + route.legs.length);
+                        return;
+                    }
+              
+                    for (var leg = 0; leg < route.legs.length; leg++) {
+                        if (highpoints[highpointChunks[i][leg].visit_order].route == undefined) {
+                            highpoints[highpointChunks[i][leg].visit_order].route = route.legs[leg];
+
+                            routesCreated++;
+                        }
+
+                        if (routesCreated == highpoints.length) {
+                            createMarkers();
+                        }
+                    }
+                }
+            };}(i));
+
+            function createMarkers() {
+                var totalDistance = 0;
+                for (var i = 0; i < highpoints.length; ++i) {
+                    var highpoint = highpoints[i];
+                    createMarker(map, highpoint.location, highpoint.name,
+                            "Landskap: " + highpoint.province +
+                            "<br>total dist: " + totalDistance / 10000,
+                            "green", character(i)
+                    );
+                    totalDistance += highpoint.route.distance.value;
+                }
+            }
+        }
+
+        /*createMarker(map, getLatLong(highpointChunks[i - 1][j - 1]),
+                highpointChunks[i - 1][j - 1][2], "Landskap: " + highpointChunks[i - 1][j - 1][3], "green",
+                character(markerCount++));*/
+
+        function character(index) {
+            return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(index);
+        }
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    Array.prototype.chunk = function(chunkSize) {
+        var newarr = new Array();
+
+        for (var i = 0; i < this.length; i += chunkSize) {
+            newarr.push(this.slice(i, i + chunkSize));
+        }
+
+        return newarr;
+    }
+</script>
+</head>
+<body>
+    <div id="map_canvas"></div>
+</body>
+</html>
