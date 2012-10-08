@@ -8,34 +8,158 @@
         html, body, #map_canvas { margin: 0; padding: 0; height: 100% }
     </style>
     <script type="text/javascript">
-    var highpointsRaw = [
-        // lat      long       name                      province
-        [56.065200, 13.138250, 'Magleröd, Söderåsen',    'Skåne'],
-        [56.375567, 13.040200, 'Högalteknall',           'Halland'],
-        [56.440850, 14.528467, 'Rävabacken',             'Blekinge'],
-        [56.770157, 16.595883, 'Rösslösa',               'Öland'],
-        [57.332150, 18.337100, 'Lojstahajd',             'Gotland'],
-        [57.768217, 15.242050, 'Stenabo',                'Östergötland'],
-        [57.500317, 14.470083, 'Tomtabacken',            'Småland'],
-        [57.784283, 13.550367, 'Galtåsen',               'Västergötland'],
-        [59.012633, 11.402850, 'Björnerödspiggen',       'Bohuslän'],
-        [59.084767, 12.472117, 'Baljåsen',               'Dalslands'],
-        [59.384100, 14.972083, 'Kilsbergen (Tomasboda)', 'Närke'],
-        [58.790733, 16.327733, 'Skogsbyås',              'Södermanland'],
-        [59.971100, 17.088183, 'Tallmossen',             'Uppland'],
-        [60.095367, 14.916400, 'Fjällberget',            'Västmanland'],
-        [60.897467, 12.742050, 'Granberget, Höljes',     'Värmland'],
-        [60.991850, 16.131217, 'Lustigknopp',            'Gästrikland'],
-        [61.896317, 14.807433, 'Granåsen (Garpknölen)',  'Hälsingland'],
+    var highpoints = [
+        {
+            location: new google.maps.LatLng(56.065200, 13.138250),
+            name: 'Magleröd, Söderåsen',
+            province: 'Skåne',
+            visit_order: 0
+        },
+        {
+            location: new google.maps.LatLng(56.375567, 13.040200),
+            name: 'Högalteknall',
+            province: 'Halland',
+            visit_order: 1
+        },
+        {
+            location: new google.maps.LatLng(56.440850, 14.528467),
+            name: 'Rävabacken',
+            province: 'Blekinge',
+            visit_order: 2
+        },
+        {
+            location: new google.maps.LatLng(56.770157, 16.595883),
+            name: 'Rösslösa',
+            province: 'Öland',
+            visit_order: 3
+        },
+        {
+            location: new google.maps.LatLng(57.332150, 18.337100),
+            name: 'Lojstahajd',
+            province: 'Gotland',
+            visit_order: 4
+        },
+        {
+            location: new google.maps.LatLng(57.768217, 15.242050),
+            name: 'Stenabo',
+            province: 'Östergötland',
+            visit_order: 5
+        },
+        {
+            location: new google.maps.LatLng(57.500317, 14.470083),
+            name: 'Tomtabacken',
+            province: 'Småland',
+            visit_order: 6
+        },
+        {
+            location: new google.maps.LatLng(57.784283, 13.550367),
+            name: 'Galtåsen',
+            province: 'Västergötland',
+            visit_order: 7
+        },
+        {
+            location: new google.maps.LatLng(59.012633, 11.402850),
+            name: 'Björnerödspiggen',
+            province: 'Bohuslän',
+            visit_order: 8
+        },
+        {
+            location: new google.maps.LatLng(59.084767, 12.472117),
+            name: 'Baljåsen',
+            province: 'Dalslands',
+            visit_order: 9
+        },
+        {
+            location: new google.maps.LatLng(59.384100, 14.972083),
+            name: 'Kilsbergen (Tomasboda)',
+            province: 'Närke',
+            visit_order: 10
+        },
+        {
+            location: new google.maps.LatLng(58.790733, 16.327733),
+            name: 'Skogsbyås',
+            province: 'Södermanland',
+            visit_order: 11
+        },
+        {
+            location: new google.maps.LatLng(59.971100, 17.088183),
+            name: 'Tallmossen',
+            province: 'Uppland',
+            visit_order: 12
+        },
+        {
+            location: new google.maps.LatLng(60.095367, 14.916400),
+            name: 'Fjällberget',
+            province: 'Västmanland',
+            visit_order: 13
+        },
+        {
+            location: new google.maps.LatLng(60.897467, 12.742050),
+            name: 'Granberget, Höljes',
+            province: 'Värmland',
+            visit_order: 14
+        },
+        {
+            location: new google.maps.LatLng(60.991850, 16.131217),
+            name: 'Lustigknopp',
+            province: 'Gästrikland',
+            visit_order: 15
+        },
+        {
+            location: new google.maps.LatLng(61.896317, 14.807433),
+            name: 'Granåsen (Garpknölen)',
+            province: 'Hälsingland',
+            visit_order: 16
+        },
     /*
-        [62.120733, 12.451333, 'Storvätteshågna',        'Dalarna'], // Grövelsjön, Sweden
-        [62.904000, 12.453000, 'Helagsfjället',          'Härjedalen'], // Ljungdalen, Sweden
-        [62.467033, 15.074567, 'Myckelmyrberget',        'Medelpad'],
-        [63.021717, 12.199417, 'Storsylen Rr 155B',      'Jämtland'], // Storulvåns fjällstation, Duved, Sverige
-        [64.234067, 15.933500, 'Tåsjöberget',            'Ångermanland'],
-        [65.043200, 19.005950, 'Åmliden',                'Västerbotten'],
-        [65.982967, 20.319133, 'Vitberget',              'Norrbotten'],
-        [67.900900, 18.517350, 'Kebnekaise',             'Lappland'], // Nikkaluokta, Sweden
+        {
+            location: new google.maps.LatLng(62.120733, 12.451333),
+            name: 'Storvätteshågna',
+            province: 'Dalarna',
+            visit_order: 17
+        }, // Grövelsjön, Sweden
+        {
+            location: new google.maps.LatLng(62.904000, 12.453000),
+            name: 'Helagsfjället',
+            province: 'Härjedalen',
+            visit_order: 18
+        }, // Ljungdalen, Sweden
+        {
+            location: new google.maps.LatLng(62.467033, 15.074567),
+            name: 'Myckelmyrberget',
+            province: 'Medelpad',
+            visit_order: 19
+        },
+        {
+            location: new google.maps.LatLng(63.021717, 12.199417),
+            name: 'Storsylen Rr 155B',
+            province: 'Jämtland',
+            visit_order: 20
+        }, // Storulvåns fjällstation, Duved, Sverige
+        {
+            location: new google.maps.LatLng(64.234067, 15.933500),
+            name: 'Tåsjöberget',
+            province: 'Ångermanland',
+            visit_order: 21
+        },
+        {
+            location: new google.maps.LatLng(65.043200, 19.005950),
+            name: 'Åmliden',
+            province: 'Västerbotten',
+            visit_order: 22
+        },
+        {
+            location: new google.maps.LatLng(65.982967, 20.319133),
+            name: 'Vitberget',
+            province: 'Norrbotten',
+            visit_order: 23
+        },
+        {
+            location: new google.maps.LatLng(67.900900, 18.517350),
+            name: 'Kebnekaise',
+            province: 'Lappland',
+            visit_order: 24
+        }, // Nikkaluokta, Sweden
     */
     ];
 
@@ -44,17 +168,6 @@
     var mapOptions = { mapTypeId: google.maps.MapTypeId.ROADMAP };
 
     function initialize() {
-        var highpoints = [];
-        highpointsRaw.forEach(function (highpoint, index) {
-            var location = new google.maps.LatLng(highpoint[0], highpoint[1]);
-            highpoints[index] = {
-                location: location,
-                visit_order: index,
-                name: highpoint[2],
-                province: highpoint[3]
-            };
-        });
-
         var icons = new Array();
 
         function getMarkerImage(iconColor, iconLetter) {
