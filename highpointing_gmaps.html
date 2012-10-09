@@ -111,19 +111,20 @@
             province: 'Hälsingland',
             visit_order: 16
         },
-    /*
         {
             location: new google.maps.LatLng(62.120733, 12.451333),
             name: 'Storvätteshågna',
             province: 'Dalarna',
-            visit_order: 17
-        }, // Grövelsjön, Sweden
+            visit_order: 17,
+            routable_location: 'Grövelsjön, Sweden'
+        },
         {
             location: new google.maps.LatLng(62.904000, 12.453000),
             name: 'Helagsfjället',
             province: 'Härjedalen',
-            visit_order: 18
-        }, // Ljungdalen, Sweden
+            visit_order: 18,
+            routable_location: 'Ljungdalen, Sweden'
+        },
         {
             location: new google.maps.LatLng(62.467033, 15.074567),
             name: 'Myckelmyrberget',
@@ -134,8 +135,9 @@
             location: new google.maps.LatLng(63.021717, 12.199417),
             name: 'Storsylen Rr 155B',
             province: 'Jämtland',
-            visit_order: 20
-        }, // Storulvåns fjällstation, Duved, Sverige
+            visit_order: 20,
+            routable_location: 'Storulvåns fjällstation, Duved, Sverige'
+        },
         {
             location: new google.maps.LatLng(64.234067, 15.933500),
             name: 'Tåsjöberget',
@@ -158,9 +160,9 @@
             location: new google.maps.LatLng(67.900900, 18.517350),
             name: 'Kebnekaise',
             province: 'Lappland',
-            visit_order: 24
-        }, // Nikkaluokta, Sweden
-    */
+            visit_order: 24,
+            routable_location: 'Nikkaluokta, Sweden'
+        }
     ];
 
     var stepDisplay;
@@ -263,16 +265,38 @@
 
             var waypnts = new Array(highpointChunks[i].length - 1);
             for (var j = 0; j < highpointChunks[i].length - 1; ++j) {
+                var waypoint = highpointChunks[i][j + 1];
+                var waypoint_loc;
+                if (waypoint.routable_location) {
+                    waypoint_loc = waypoint.routable_location;
+                } else {
+                    waypoint_loc = waypoint.location;
+                }
+                    
                 waypnts[j] = {
-                    location: highpointChunks[i][j + 1].location,
+                    location: waypoint_loc,
                     stopover: true
                 };
             }
 
+            var start_location;
+            if (highpointChunks[i][0].routable_location) {
+                start_location = highpointChunks[i][0].routable_location;
+            } else {
+                start_location = highpointChunks[i][0].location;
+            }
+
+            var end_location;
+            if (highpointChunks[i][highpointChunks[i].length - 1].routable_location) {
+                end_location = highpointChunks[i][highpointChunks[i].length - 1].routable_location;
+            } else {
+                end_location = highpointChunks[i][highpointChunks[i].length - 1].location;
+            }
+
             var request = {
-                origin: highpointChunks[i][0].location,
+                origin: start_location,
                 waypoints: waypnts,
-                destination: highpointChunks[i][highpointChunks[i].length - 1].location,
+                destination: end_location,
                 travelMode: google.maps.DirectionsTravelMode.DRIVING
             };
 
