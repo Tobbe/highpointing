@@ -1,0 +1,231 @@
+[
+{
+    "location": {
+        "lat": 56.065200,
+        "lng": 13.138250
+    },
+    "name": "Magleröd, Söderåsen",
+    "province": "Skåne",
+    "visit_order": 0
+},
+{
+    "location": {
+        "lat": 56.375567,
+        "lng": 13.040200
+    },
+    "name": "Högalteknall",
+    "province": "Halland",
+    "visit_order": 1
+},
+{
+    "location": {
+        "lat": 56.440850,
+        "lng": 14.528467
+    },
+    "name": "Rävabacken",
+    "province": "Blekinge",
+    "visit_order": 2
+},
+{
+    "location": {
+        "lat": 56.770157,
+        "lng": 16.595883
+    },
+    "name": "Rösslösa",
+    "province": "Öland",
+    "visit_order": 3
+},
+{
+    "location": {
+        "lat": 57.332150,
+        "lng": 18.337100
+    },
+    "name": "Lojstahajd",
+    "province": "Gotland",
+    "visit_order": 4
+},
+{
+    "location": {
+        "lat": 57.768217,
+        "lng": 15.242050
+    },
+    "name": "Stenabo",
+    "province": "Östergötland",
+    "visit_order": 5
+},
+{
+    "location": {
+        "lat": 57.500317,
+        "lng": 14.470083
+    },
+    "name": "Tomtabacken",
+    "province": "Småland",
+    "visit_order": 6
+},
+{
+    "location": {
+        "lat": 57.784283,
+        "lng": 13.550367
+    },
+    "name": "Galtåsen",
+    "province": "Västergötland",
+    "visit_order": 7
+},
+{
+    "location": {
+        "lat": 59.012633,
+        "lng": 11.402850
+    },
+    "name": "Björnerödspiggen",
+    "province": "Bohuslän",
+    "visit_order": 8
+},
+{
+    "location": {
+        "lat": 59.084767,
+        "lng": 12.472117
+    },
+    "name": "Baljåsen",
+    "province": "Dalslands",
+    "visit_order": 9
+},
+{
+    "location": {
+        "lat": 59.384100,
+        "lng": 14.972083
+    },
+    "name": "Kilsbergen (Tomasboda)",
+    "province": "Närke",
+    "visit_order": 10
+},
+{
+    "location": {
+        "lat": 58.790733,
+        "lng": 16.327733
+    },
+    "name": "Skogsbyås",
+    "province": "Södermanland",
+    "visit_order": 11
+},
+{
+    "location": {
+        "lat": 59.971100,
+        "lng": 17.088183
+    },
+    "name": "Tallmossen",
+    "province": "Uppland",
+    "visit_order": 12
+},
+{
+    "location": {
+        "lat": 60.095367,
+        "lng": 14.916400
+    },
+    "name": "Fjällberget",
+    "province": "Västmanland",
+    "visit_order": 13
+},
+{
+    "location": {
+        "lat": 60.897467,
+        "lng": 12.742050
+    },
+    "name": "Granberget, Höljes",
+    "province": "Värmland",
+    "visit_order": 14
+},
+{
+    "location": {
+        "lat": 60.991850,
+        "lng": 16.131217
+    },
+    "name": "Lustigknopp",
+    "province": "Gästrikland",
+    "visit_order": 15
+},
+{
+    "location": {
+        "lat": 61.896317,
+        "lng": 14.807433
+    },
+    "name": "Granåsen (Garpknölen)",
+    "province": "Hälsingland",
+    "visit_order": 16
+},
+{
+    "location": {
+        "lat": 62.120733,
+        "lng": 12.451333
+    },
+    "name": "Storvätteshågna",
+    "province": "Dalarna",
+    "visit_order": 17,
+    "routable_location": "Grövelsjön, Sweden"
+},
+{
+    "location": {
+        "lat": 62.904000,
+        "lng": 12.453000
+    },
+    "name": "Helagsfjället",
+    "province": "Härjedalen",
+    "visit_order": 18,
+    "routable_location": "Ljungdalen, Sweden"
+},
+{
+    "location": {
+        "lat": 62.467033,
+        "lng": 15.074567
+    },
+    "name": "Myckelmyrberget",
+    "province": "Medelpad",
+    "visit_order": 19
+},
+{
+    "location": {
+        "lat": 63.021717,
+        "lng": 12.199417
+    },
+    "name": "Storsylen Rr 155B",
+    "province": "Jämtland",
+    "visit_order": 20,
+    "routable_location": "Storulvåns fjällstation, Duved, Sverige"
+},
+{
+    "location": {
+        "lat": 64.234067,
+        "lng": 15.933500
+    },
+    "name": "Tåsjöberget",
+    "province": "Ångermanland",
+    "visit_order": 21
+},
+{
+    "location": {
+        "lat": 65.043200,
+        "lng": 19.005950
+    },
+    "name": "Åmliden",
+    "province": "Västerbotten",
+    "visit_order": 22
+},
+{
+    "location": {
+        "lat": 65.982967,
+        "lng": 20.319133
+    },
+    "name": "Vitberget",
+    "province": "Norrbotten",
+    "visit_order": 23
+},
+{
+    "location": {
+        "lat": 67.900900,
+        "lng": 18.517350
+    },
+    "name": "Kebnekaise",
+    "province": "Lappland",
+    "visit_order": 24,
+    "routable_location": "Nikkaluokta, Sweden"
+}
+]
