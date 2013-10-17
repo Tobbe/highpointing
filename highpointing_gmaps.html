@@ -14,19 +14,38 @@
     var mapOptions = { mapTypeId: google.maps.MapTypeId.ROADMAP };
 
     function initialize() {
-        $.getJSON("highpoints.json", function(data) {
-            prepareHighpoints(data);
-            drawMap(data);
+        $.getJSON("highpoints.geojson", function(data) {
+            drawMap(prepareGeoHighpoints(data));
         }).fail(function(jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
         });
     }
 
     function prepareHighpoints(data) {
-        data.forEach(function(highpoint, index) {
+        data.forEach(function(highpoint) {
             highpoint.location = new google.maps.LatLng(highpoint.location.lat,
                                                         highpoint.location.lng);
         });
+
+        return data;
+    }
+
+    function prepareGeoHighpoints(data) {
+        var highpoints = [];
+        data.features.forEach(function(highpoint, index) {
+            var highpoint = {
+                "location": new google.maps.LatLng(highpoint.geometry.coordinates[0],
+                                                   highpoint.geometry.coordinates[1]),
+                "name": highpoint.properties.name,
+                "province": highpoint.properties.province,
+                "visit_order": highpoint.properties.visit_order,
+                "routable_location": highpoint.properties.routable_location
+            };
+
+            highpoints.push(highpoint);
+        });
+
+        return highpoints;
     }
 
     function drawMap(highpoints) {
@@ -180,6 +199,8 @@
                             createMarkers();
                         }
                     }
+                } else {
+                    alert(status);
                 }
             };}(i));
 

@@ -1,0 +1,310 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [56.0652, 13.13825]
+            },
+            "properties": {
+                "name": "Magleröd, Söderåsen",
+                "province": "Skåne",
+                "visit_order": 0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [56.375567, 13.0402]
+            },
+            "properties": {
+                "name": "Högalteknall",
+                "province": "Halland",
+                "visit_order": 1
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [56.44085, 14.528467]
+            },
+            "properties": {
+                "name": "Rävabacken",
+                "province": "Blekinge",
+                "visit_order": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [56.770157, 16.595883]
+            },
+            "properties": {
+                "name": "Rösslösa",
+                "province": "Öland",
+                "visit_order": 3
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [57.33215, 18.3371]
+            },
+            "properties": {
+                "name": "Lojstahajd",
+                "province": "Gotland",
+                "visit_order": 4
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [57.768217, 15.24205]
+            },
+            "properties": {
+                "name": "Stenabo",
+                "province": "Östergötland",
+                "visit_order": 5
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [57.500317, 14.470083]
+            },
+            "properties": {
+                "name": "Tomtabacken",
+                "province": "Småland",
+                "visit_order": 6
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [57.784283, 13.550367]
+            },
+            "properties": {
+                "name": "Galtåsen",
+                "province": "Västergötland",
+                "visit_order": 7
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [59.012633, 11.40285]
+            },
+            "properties": {
+                "name": "Björnerödspiggen",
+                "province": "Bohuslän",
+                "visit_order": 8
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [59.084767, 12.472117]
+            },
+            "properties": {
+                "name": "Baljåsen",
+                "province": "Dalslands",
+                "visit_order": 9
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [59.3841, 14.972083]
+            },
+            "properties": {
+                "name": "Kilsbergen (Tomasboda)",
+                "province": "Närke",
+                "visit_order": 10
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [58.790733, 16.327733]
+            },
+            "properties": {
+                "name": "Skogsbyås",
+                "province": "Södermanland",
+                "visit_order": 11
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [59.9711, 17.088183]
+            },
+            "properties": {
+                "name": "Tallmossen",
+                "province": "Uppland",
+                "visit_order": 12
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [60.095367, 14.9164]
+            },
+            "properties": {
+                "name": "Fjällberget",
+                "province": "Västmanland",
+                "visit_order": 13
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [60.897467, 12.74205]
+            },
+            "properties": {
+                "name": "Granberget, Höljes",
+                "province": "Värmland",
+                "visit_order": 14
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [60.99185, 16.131217]
+            },
+            "properties": {
+                "name": "Lustigknopp",
+                "province": "Gästrikland",
+                "visit_order": 15
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [61.896317, 14.807433]
+            },
+            "properties": {
+                "name": "Granåsen (Garpknölen)",
+                "province": "Hälsingland",
+                "visit_order": 16
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [62.120733, 12.451333]
+            },
+            "properties": {
+                "name": "Storvätteshågna",
+                "province": "Dalarna",
+                "visit_order": 17,
+                "routable_location": "Grövelsjön, Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [62.904, 12.453]
+            },
+            "properties": {
+                "name": "Helagsfjället",
+                "province": "Härjedalen",
+                "visit_order": 18,
+                "routable_location": "Ljungdalen, Sweden"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [62.467033, 15.074567]
+            },
+            "properties": {
+                "name": "Myckelmyrberget",
+                "province": "Medelpad",
+                "visit_order": 19
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [63.021717, 12.199417]
+            },
+            "properties": {
+                "name": "Storsylen Rr 155B",
+                "province": "Jämtland",
+                "visit_order": 20,
+                "routable_location": "Storulvåns fjällstation, Duved, Sverige"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [64.234067, 15.9335]
+            },
+            "properties": {
+                "name": "Tåsjöberget",
+                "province": "Ångermanland",
+                "visit_order": 21
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [65.0432, 19.00595]
+            },
+            "properties": {
+                "name": "Åmliden",
+                "province": "Västerbotten",
+                "visit_order": 22
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [65.982967, 20.319133]
+            },
+            "properties": {
+                "name": "Vitberget",
+                "province": "Norrbotten",
+                "visit_order": 23
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [67.9009, 18.51735]
+            },
+            "properties": {
+                "name": "Kebnekaise",
+                "province": "Lappland",
+                "visit_order": 24,
+                "routable_location": "Nikkaluokta, Sweden"
+            }
+        }
+    ]
+}
+
