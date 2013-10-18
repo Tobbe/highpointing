@@ -34,8 +34,8 @@
         var highpoints = [];
         data.features.forEach(function(highpoint, index) {
             var highpoint = {
-                "location": new google.maps.LatLng(highpoint.geometry.coordinates[0],
-                                                   highpoint.geometry.coordinates[1]),
+                "location": new google.maps.LatLng(highpoint.geometry.coordinates[1],
+                                                   highpoint.geometry.coordinates[0]),
                 "name": highpoint.properties.name,
                 "province": highpoint.properties.province,
                 "visit_order": highpoint.properties.visit_order,

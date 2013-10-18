@@ -5,7 +5,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [56.0652, 13.13825]
+                "coordinates": [13.13825, 56.0652]
             },
             "properties": {
                 "name": "Magleröd, Söderåsen",
@@ -17,7 +17,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [56.375567, 13.0402]
+                "coordinates": [13.0402, 56.375567]
             },
             "properties": {
                 "name": "Högalteknall",
@@ -29,7 +29,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [56.44085, 14.528467]
+                "coordinates": [14.528467, 56.44085]
             },
             "properties": {
                 "name": "Rävabacken",
@@ -41,7 +41,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [56.770157, 16.595883]
+                "coordinates": [16.595883, 56.770157]
             },
             "properties": {
                 "name": "Rösslösa",
@@ -53,7 +53,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [57.33215, 18.3371]
+                "coordinates": [18.3371, 57.33215]
             },
             "properties": {
                 "name": "Lojstahajd",
@@ -65,7 +65,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [57.768217, 15.24205]
+                "coordinates": [15.24205, 57.768217]
             },
             "properties": {
                 "name": "Stenabo",
@@ -77,7 +77,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [57.500317, 14.470083]
+                "coordinates": [14.470083, 57.500317]
             },
             "properties": {
                 "name": "Tomtabacken",
@@ -89,7 +89,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [57.784283, 13.550367]
+                "coordinates": [13.550367, 57.784283]
             },
             "properties": {
                 "name": "Galtåsen",
@@ -101,7 +101,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [59.012633, 11.40285]
+                "coordinates": [11.40285, 59.012633]
             },
             "properties": {
                 "name": "Björnerödspiggen",
@@ -113,7 +113,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [59.084767, 12.472117]
+                "coordinates": [12.472117, 59.084767]
             },
             "properties": {
                 "name": "Baljåsen",
@@ -125,7 +125,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [59.3841, 14.972083]
+                "coordinates": [14.972083, 59.3841]
             },
             "properties": {
                 "name": "Kilsbergen (Tomasboda)",
@@ -137,7 +137,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [58.790733, 16.327733]
+                "coordinates": [16.327733, 58.790733]
             },
             "properties": {
                 "name": "Skogsbyås",
@@ -149,7 +149,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [59.9711, 17.088183]
+                "coordinates": [17.088183, 59.9711]
             },
             "properties": {
                 "name": "Tallmossen",
@@ -161,7 +161,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [60.095367, 14.9164]
+                "coordinates": [14.9164, 60.095367]
             },
             "properties": {
                 "name": "Fjällberget",
@@ -173,7 +173,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [60.897467, 12.74205]
+                "coordinates": [12.74205, 60.897467]
             },
             "properties": {
                 "name": "Granberget, Höljes",
@@ -185,7 +185,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [60.99185, 16.131217]
+                "coordinates": [16.131217, 60.99185]
             },
             "properties": {
                 "name": "Lustigknopp",
@@ -197,7 +197,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [61.896317, 14.807433]
+                "coordinates": [14.807433, 61.896317]
             },
             "properties": {
                 "name": "Granåsen (Garpknölen)",
@@ -209,7 +209,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [62.120733, 12.451333]
+                "coordinates": [12.451333, 62.120733]
             },
             "properties": {
                 "name": "Storvätteshågna",
@@ -222,7 +222,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [62.904, 12.453]
+                "coordinates": [12.453, 62.904]
             },
             "properties": {
                 "name": "Helagsfjället",
@@ -235,7 +235,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [62.467033, 15.074567]
+                "coordinates": [15.074567, 62.467033]
             },
             "properties": {
                 "name": "Myckelmyrberget",
@@ -247,7 +247,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [63.021717, 12.199417]
+                "coordinates": [12.199417, 63.021717]
             },
             "properties": {
                 "name": "Storsylen Rr 155B",
@@ -260,7 +260,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [64.234067, 15.9335]
+                "coordinates": [15.9335, 64.234067]
             },
             "properties": {
                 "name": "Tåsjöberget",
@@ -272,7 +272,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [65.0432, 19.00595]
+                "coordinates": [19.00595, 65.0432]
             },
             "properties": {
                 "name": "Åmliden",
@@ -284,7 +284,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [65.982967, 20.319133]
+                "coordinates": [20.319133, 65.982967]
             },
             "properties": {
                 "name": "Vitberget",
@@ -296,7 +296,7 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [67.9009, 18.51735]
+                "coordinates": [18.51735, 67.9009]
             },
             "properties": {
                 "name": "Kebnekaise",
