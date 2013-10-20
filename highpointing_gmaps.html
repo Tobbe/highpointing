@@ -5,6 +5,7 @@
 
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="marker_images.js"></script>
     <style type="text/css">
         html, body, #map_canvas { margin: 0; padding: 0; height: 100% }
     </style>
@@ -40,52 +41,7 @@
     }
 
     function drawMap(highpoints) {
-        var icons = new Array();
-
-        function getMarkerImage(iconColor, iconLetter) {
-            if ((typeof(iconColor)=="undefined") || (iconColor==null)) {
-                iconColor = "red";
-            }
-
-            if (!icons[iconColor+iconLetter]) {
-                icons[iconColor+iconLetter] = new google.maps.MarkerImage("http://www.google.com/mapfiles/marker_" + iconColor + iconLetter + ".png",
-                // This marker is 32 pixels wide by 32 pixels tall.
-                new google.maps.Size(32, 32),
-                // The origin for this image is 0,0.
-                new google.maps.Point(0,0),
-                // The anchor for this image is at 16,32.
-                new google.maps.Point(16, 32));
-            }
-
-            return icons[iconColor+iconLetter];
-        }
-
-        // Marker sizes are expressed as a Size of X,Y
-        // where the origin of the image (0,0) is located
-        // in the top left of the image.
-         
-        // Origins, anchor positions and coordinates of the marker
-        // increase in the X direction to the right and in
-        // the Y direction down.
-
-        var iconShadow = new google.maps.MarkerImage('http://maps.google.com/mapfiles/ms/micons/msmarker.shadow.png',
-            // The shadow image is larger in the horizontal dimension
-            // while the position and offset are the same as for the main image.
-            new google.maps.Size(59, 32),
-            new google.maps.Point(0,0),
-            new google.maps.Point(16, 32));
-            // Shapes define the clickable region of the icon.
-            // The type defines an HTML <area> element 'poly' which
-            // traces out a polygon as a series of X,Y points. The final
-            // coordinate closes the poly by connecting to the first
-            // coordinate.
-        var iconShape = {
-            coord: [19,0, 24,5, 24,12, 23,13, 23,14, 20,17, 20,18, 19,19, 19,20,
-                    18,21, 18,22, 17,23, 17,26, 16,27, 16,31, 14,31, 14,26, 13,25,
-                    13,23, 12,22, 12,20, 10,18, 10,17, 7,14, 7,13, 6,12, 6,6, 7,5,
-                    7,4, 11,0],
-            type: 'poly'
-        };
+        var markerImages = new MarkerImages();
 
         var infowindow = new google.maps.InfoWindow({
             size: new google.maps.Size(150,50)
@@ -96,9 +52,9 @@
             var marker = new google.maps.Marker({
                 position: latlng,
                 map: map,
-                shadow: iconShadow,
-                icon: getMarkerImage(color, letter),
-                shape: iconShape,
+                shadow: markerImages.getIconShadow(),
+                icon: markerImages.getIcon(color, letter),
+                shape: markerImages.getIconShape(),
                 title: label,
                 zIndex: Math.round(latlng.lat()*-100000)<<5
             });
