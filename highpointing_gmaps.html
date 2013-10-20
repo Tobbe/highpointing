@@ -21,15 +21,6 @@
         });
     }
 
-    function prepareHighpoints(data) {
-        data.forEach(function(highpoint) {
-            highpoint.location = new google.maps.LatLng(highpoint.location.lat,
-                                                        highpoint.location.lng);
-        });
-
-        return data;
-    }
-
     function prepareGeoHighpoints(data) {
         var highpoints = [];
         data.features.forEach(function(highpoint, index) {
