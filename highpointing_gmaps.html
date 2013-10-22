@@ -6,6 +6,8 @@
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script src="marker_images.js"></script>
+    <script src="route_section.js"></script>
+    <script src="route.js"></script>
     <style type="text/css">
         html, body, #map_canvas { margin: 0; padding: 0; height: 100% }
     </style>
@@ -46,7 +48,7 @@
         var infowindow = new google.maps.InfoWindow({
             size: new google.maps.Size(150,50)
         });
-       
+
         function createMarker(map, latlng, label, html, color, letter) {
             var contentString = '<b>'+label+'</b><br>'+html;
             var marker = new google.maps.Marker({
@@ -63,110 +65,39 @@
                 infowindow.setContent(contentString);
                 infowindow.open(map, marker);
             });
-            
+
             return marker;
         }
 
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
         directionsService = new google.maps.DirectionsService();
         stepDisplay = new google.maps.InfoWindow();
-        var marker;
-        var highpointChunks = highpoints.chunk(6);
-        var directionsDisplays = new Array(highpointChunks.length);
-        var routesCreated = 0;
 
-        for (var i = 0; i < highpointChunks.length; ++i) {
-            directionsDisplays[i] = new google.maps.DirectionsRenderer({
-                suppressMarkers: true,
-                //suppressInfoWindows: false*/
-            });
+        var directionsRenderer = new google.maps.DirectionsRenderer({
+            suppressMarkers: true,
+        });
+        directionsRenderer.setMap(map);
 
-            directionsDisplays[i].setMap(map);
+        var fullRoute = new Route(directionsService, highpoints);
+        fullRoute.onRouteCompleted(function (routeResults) {
+            directionsRenderer.setDirections(routeResults);
 
-            if (i < highpointChunks.length - 1) {
-                // Add the first item of the next chunk as the last item in
-                // this chunk to create a continuous route
-                highpointChunks[i].push(highpointChunks[i + 1][0]);
+            createMarkers();
+        });
+
+        function createMarkers() {
+            for (var i = 0; i < highpoints.length; ++i) {
+                var highpoint = highpoints[i];
+                createMarker(map, highpoint.location, highpoint.name,
+                        "Landskap: " + highpoint.province +
+                        "<br>total dist: " + highpoint.distanceFromStart / 10000,
+                        "green", character(i)
+                );
             }
 
-            var waypnts = new Array(highpointChunks[i].length - 1);
-            for (var j = 0; j < highpointChunks[i].length - 1; ++j) {
-                var waypoint = highpointChunks[i][j + 1];
-                var waypoint_loc;
-                if (waypoint.routable_location) {
-                    waypoint_loc = waypoint.routable_location;
-                } else {
-                    waypoint_loc = waypoint.location;
-                }
-                    
-                waypnts[j] = {
-                    location: waypoint_loc,
-                    stopover: true
-                };
+            function character(index) {
+                return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(index);
             }
-
-            var start_location;
-            if (highpointChunks[i][0].routable_location) {
-                start_location = highpointChunks[i][0].routable_location;
-            } else {
-                start_location = highpointChunks[i][0].location;
-            }
-
-            var end_location;
-            if (highpointChunks[i][highpointChunks[i].length - 1].routable_location) {
-                end_location = highpointChunks[i][highpointChunks[i].length - 1].routable_location;
-            } else {
-                end_location = highpointChunks[i][highpointChunks[i].length - 1].location;
-            }
-
-            var request = {
-                origin: start_location,
-                waypoints: waypnts,
-                destination: end_location,
-                travelMode: google.maps.DirectionsTravelMode.DRIVING
-            };
-
-            directionsService.route(request, function (i) { return function(response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    directionsDisplays[i].setDirections(response);
-                    var route = response.routes[0];
-                    if (route.legs.length != highpointChunks[i].length) {
-                        alert("Yor code is broken. " + highpointChunks[i].length + " legs expected. Got " + route.legs.length);
-                        return;
-                    }
-              
-                    for (var leg = 0; leg < route.legs.length; leg++) {
-                        if (highpoints[highpointChunks[i][leg].visit_order].route == undefined) {
-                            highpoints[highpointChunks[i][leg].visit_order].route = route.legs[leg];
-
-                            routesCreated++;
-                        }
-
-                        if (routesCreated == highpoints.length) {
-                            createMarkers();
-                        }
-                    }
-                } else {
-                    alert(status);
-                }
-            };}(i));
-
-            function createMarkers() {
-                var totalDistance = 0;
-                for (var i = 0; i < highpoints.length; ++i) {
-                    var highpoint = highpoints[i];
-                    createMarker(map, highpoint.location, highpoint.name,
-                            "Landskap: " + highpoint.province +
-                            "<br>total dist: " + totalDistance / 10000,
-                            "green", character(i)
-                    );
-                    totalDistance += highpoint.route.distance.value;
-                }
-            }
-        }
-
-        function character(index) {
-            return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(index);
         }
     }
 
