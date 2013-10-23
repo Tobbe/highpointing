@@ -88,9 +88,10 @@
         function createMarkers() {
             for (var i = 0; i < highpoints.length; ++i) {
                 var highpoint = highpoints[i];
+                var tenKm = Math.round(highpoint.distanceFromStart / 10000);
                 createMarker(map, highpoint.location, highpoint.name,
                         "Landskap: " + highpoint.province +
-                        "<br>total dist: " + highpoint.distanceFromStart / 10000,
+                        "<br>Avst&aring;nd fr&aring;n start: " + tenKm + " mil",
                         "green", character(i)
                 );
             }
