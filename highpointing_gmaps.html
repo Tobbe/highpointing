@@ -9,7 +9,9 @@
     <script src="route_section.js"></script>
     <script src="route.js"></script>
     <style type="text/css">
-        html, body, #map_canvas { margin: 0; padding: 0; height: 100% }
+        html, body { margin: 0; padding: 0; }
+        #map_canvas { height: 650px; margin-right: 400px; }
+        #info { float: right; width: 400px; }
     </style>
     <script type="text/javascript">
     var stepDisplay;
@@ -19,6 +21,12 @@
     function initialize() {
         $.getJSON("highpoints.geojson", function(data) {
             drawMap(prepareGeoHighpoints(data));
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+        });
+
+        $.getJSON("itinerary.json", function(data) {
+            populateItinerary(data);
         }).fail(function(jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
         });
@@ -102,6 +110,14 @@
         }
     }
 
+    function populateItinerary(itinerary) {
+        itinerary.forEach(function (item) {
+            $('#info').append('<h3>Dag ' + item.start_day + '</h3>')
+            $('#info').append('<p>Fr&aring;n: ' + item.from + '</p>')
+            $('#info').append('<p>Till: ' + item.to + '</p>')
+        }); 
+    }
+
     google.maps.event.addDomListener(window, 'load', initialize);
 
     Array.prototype.chunk = function(chunkSize) {
@@ -116,6 +132,9 @@
 </script>
 </head>
 <body>
+    <div id="info">
+        <h2>Itinerary</h2>
+    </div>
     <div id="map_canvas"></div>
 </body>
 </html>

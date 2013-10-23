@@ -1,0 +1,104 @@
+[
+{
+    "start_day": 1,
+    "from": "A",
+    "to": "D"
+},
+{
+    "start_day": 2,
+    "from": "D",
+    "to": "Målilla"
+},
+{
+    "start_day": 3,
+    "from": "Målilla",
+    "to": "H"
+},
+{
+    "start_day": 4,
+    "from": "H",
+    "to": "J"
+},
+{
+    "start_day": 5,
+    "from": "J",
+    "to": "L"
+},
+{
+    "start_day": 6,
+    "from": "L",
+    "to": "N"
+},
+{
+    "start_day": 7,
+    "from": "N",
+    "to": "Mora"
+},
+{
+    "start_day": 8,
+    "from": "Mora",
+    "to": "Q"
+},
+{
+    "start_day": 9,
+    "from": "Q",
+    "to": "S"
+},
+{
+    "start_day": 10,
+    "from": "S",
+    "to": "S"
+},
+{
+    "start_day": 11,
+    "from": "S",
+    "to": "Mörsil"
+},
+{
+    "start_day": 12,
+    "from": "Mörsil",
+    "to": "U"
+},
+{
+    "start_day": 13,
+    "from": "U",
+    "to": "V"
+},
+{
+    "start_day": 14,
+    "from": "V",
+    "to": "W"
+},
+{
+    "start_day": 15,
+    "from": "W",
+    "to": "Jokkmokk"
+},
+{
+    "start_day": 16,
+    "from": "Jokkmokk",
+    "to": "Nikkaluokta"
+},
+{
+    "start_day": 17,
+    "from": "Nikkaluokta",
+    "to": "Kebnekaise"
+},
+{
+    "start_day": 18,
+    "from": "Kebnekaise",
+    "to": "Kilpisjärvi"
+},
+{
+    "start_day": 19,
+    "from": "Kilpisjärvi",
+    "to": "Nordkap",
+    "days": 2
+},
+{
+    "start_day": 21,
+    "from": "Nordkap",
+    "to": "Flerohopp",
+    "days": 5
+}
+]
