@@ -1,5 +1,5 @@
 function MarkerImages() {
-    this.icons = new Array();
+    this.icons = [];
 
     this.shadow = new google.maps.MarkerImage('http://maps.google.com/mapfiles/ms/micons/msmarker.shadow.png',
         // The shadow image is larger in the horizontal dimension
@@ -18,7 +18,7 @@ function MarkerImages() {
 }
 
 MarkerImages.prototype.getIcon = function(color, letter) {
-    if ((typeof(color) == "undefined") || (color == null)) {
+    if ((typeof(color) == "undefined") || (color === null)) {
         color = "red";
     }
 
