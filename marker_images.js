@@ -17,23 +17,47 @@ function MarkerImages() {
     };
 }
 
-MarkerImages.prototype.getIcon = function(color, letter) {
-    if ((typeof(color) == "undefined") || (color === null)) {
-        color = "red";
-    }
-
+/**
+ * Create a pin icon with the supplied letter on it
+ *
+ * Standard Google pin colors:
+ * Red: FF766A (http://maps.google.com/mapfiles/markerA.png)
+ * Green: 65BA4A (http://maps.google.com/mapfiles/marker_greenA.png)
+ * Purple: 9079FC (http://maps.google.com/mapfiles/marker_purpleA.png)
+ * Orange: FFB100 (http://maps.google.com/mapfiles/marker_orangeA.png)
+ * White: FFFFFF (http://maps.google.com/mapfiles/marker_whiteA.png)
+ * Brown: B68800 (http://maps.google.com/mapfiles/marker_brownA.png)
+ * Grey: BCBCBC (http://maps.google.com/mapfiles/marker_greyA.png)
+ * Yellow: FCF357 (http://maps.google.com/mapfiles/marker_yellowA.png)
+ * Light yellow: EFE387 (http://maps.google.com/mapfiles/marker_yellow.png)
+ */
+MarkerImages.prototype.getLetterIcon = function(color, letter) {
     if (!this.icons[color + letter]) {
-        this.icons[color + letter] = new google.maps.MarkerImage(
-            "http://www.google.com/mapfiles/marker_" + color + letter + ".png",
-            // This marker is 32 pixels wide by 32 pixels tall.
-            new google.maps.Size(32, 32),
-            // The origin for this image is 0,0.
-            new google.maps.Point(0,0),
-            // The anchor for this image is at 16,32.
-            new google.maps.Point(16, 32));
+        var url = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=' + letter + '|' + color + '|000000';
+        this.icons[color + letter] = this._getIcon(url);
     }
 
     return this.icons[color + letter];
+};
+
+MarkerImages.prototype.getImageIcon = function(color, image) {
+    if (!this.icons[color + image]) {
+        var url = 'https://chart.googleapis.com/chart?chst=d_map_pin_icon&chld=' + image + '|' + color;
+        this.icons[color + image] = this._getIcon(url);
+    }
+
+    return this.icons[color + image];
+};
+
+MarkerImages.prototype._getIcon = function(url) {
+    return new google.maps.MarkerImage(
+        url,
+        // This marker is 32 pixels wide by 32 pixels tall.
+        new google.maps.Size(32, 32),
+        // The origin for this image is 0,0.
+        new google.maps.Point(0,0),
+        // The anchor for this image is at 16,32.
+        new google.maps.Point(16, 32));
 };
 
 MarkerImages.prototype.getIconShadow = function() {

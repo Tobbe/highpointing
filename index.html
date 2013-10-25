@@ -59,13 +59,20 @@
             size: new google.maps.Size(150,50)
         });
 
-        function createMarker(map, latlng, label, html, color, letter) {
+        function createMarker(map, latlng, label, html, color, symbol) {
             var contentString = '<b>'+label+'</b><br>'+html;
+            var icon;
+            if (symbol.length === 1) {
+                icon = markerImages.getLetterIcon(color, symbol);
+            } else {
+                icon = markerImages.getImageIcon(color, symbol);
+            }
+
             var marker = new google.maps.Marker({
                 position: latlng,
                 map: map,
                 shadow: markerImages.getIconShadow(),
-                icon: markerImages.getIcon(color, letter),
+                icon: icon,
                 shape: markerImages.getIconShape(),
                 title: label,
                 zIndex: Math.round(latlng.lat()*-100000)<<5
@@ -104,12 +111,12 @@
                     createMarker(map, highpoint.location, highpoint.name,
                             "&Ouml;vernattning" +
                             "<br>Avst&aring;nd fr&aring;n start: " + tenKm + " mil",
-                            "green", "Z");
+                            "FF766A", "camping");
                 } else {
                     createMarker(map, highpoint.location, highpoint.name,
                             "Landskap: " + highpoint.province +
                             "<br>Avst&aring;nd fr&aring;n start: " + tenKm + " mil",
-                            "green", highpoint.id);
+                            "65BA4A", highpoint.id);
                 }
             }
         }
