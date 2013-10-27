@@ -92,8 +92,12 @@
 {
     "start_day": 19,
     "from": "Kilpisjärvi",
-    "to": "Nordkap",
-    "days": 2
+    "to": "Alta"
+},
+{
+    "start_day": 20,
+    "from": "Alta",
+    "to": "Nordkap"
 },
 {
     "start_day": 21,

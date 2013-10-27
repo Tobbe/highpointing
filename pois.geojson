@@ -413,13 +413,26 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
+                "coordinates": [23.27155, 69.96874]
+            },
+            "properties": {
+                "type": "Sleep",
+                "name": "Alta",
+                "id": "S6",
+                "visit_order": 31
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
                 "coordinates": [25.78324, 71.16989]
             },
             "properties": {
                 "type": "TouristAttraction",
                 "name": "Nordkap",
                 "id": "TA2",
-                "visit_order": 31
+                "visit_order": 32
             }
         }
     ]
