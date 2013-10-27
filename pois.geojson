@@ -394,6 +394,20 @@
                 "visit_order": 29,
                 "routable_location": "Nikkaluokta, Sweden"
             }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [20.548611, 69.06]
+            },
+            "properties": {
+                "type": "TouristAttraction",
+                "name": "Treriksröset",
+                "id": "TA1",
+                "visit_order": 30,
+                "routable_location": "Kilpisjärvi, Finland"
+            }
         }
     ]
 }

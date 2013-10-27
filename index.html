@@ -112,6 +112,10 @@
                             "&Ouml;vernattning" +
                             "<br>Avst&aring;nd fr&aring;n start: " + tenKm + " mil",
                             "FF766A", "camping");
+                } else if (highpoint.type == "TouristAttraction") {
+                    createMarker(map, highpoint.location, highpoint.name,
+                            "Avst&aring;nd fr&aring;n start: " + tenKm + " mil",
+                            "FCF357", "glyphish_camera");
                 } else {
                     createMarker(map, highpoint.location, highpoint.name,
                             "Landskap: " + highpoint.province +
