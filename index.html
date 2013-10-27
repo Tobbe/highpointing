@@ -128,9 +128,7 @@
 
     function populateItinerary(itinerary) {
         itinerary.forEach(function (item) {
-            $('#info').append('<h3>Dag ' + item.start_day + '</h3>')
-            $('#info').append('<p>Fr&aring;n: ' + item.from + '</p>')
-            $('#info').append('<p>Till: ' + item.to + '</p>')
+            $('#info').append('<h3>Dag ' + item.start_day + ': ' + item.from + ' - ' + item.to + '</h3>')
         }); 
     }
 
