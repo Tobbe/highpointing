@@ -408,6 +408,19 @@
                 "visit_order": 30,
                 "routable_location": "Kilpisjärvi, Finland"
             }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [25.78324, 71.16989]
+            },
+            "properties": {
+                "type": "TouristAttraction",
+                "name": "Nordkap",
+                "id": "TA2",
+                "visit_order": 31
+            }
         }
     ]
 }
