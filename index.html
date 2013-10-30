@@ -12,6 +12,8 @@
         html, body { margin: 0; padding: 0; }
         #map_canvas { height: 650px; margin-right: 400px; }
         #info { float: right; width: 400px; }
+        #info img { vertical-align: bottom; margin-right: 5px; }
+        #info p { display: none; }
     </style>
     <script type="text/javascript">
     var stepDisplay;
@@ -19,14 +21,19 @@
     var mapOptions = { mapTypeId: google.maps.MapTypeId.ROADMAP };
 
     function initialize() {
-        $.getJSON("pois.geojson", function(data) {
-            drawMap(prepareGeoHighpoints(data));
-        }).fail(function(jqXHR, textStatus, errorThrown) {
-            alert(errorThrown);
+        $('#info').on('click', 'section', function () {
+            $(this).children().first().next().toggle();
         });
 
-        $.getJSON("itinerary.json", function(data) {
-            populateItinerary(data);
+        $.getJSON("pois.geojson", function(data) {
+            var highpoints = prepareGeoHighpoints(data)
+            drawMap(highpoints);
+
+            $.getJSON("itinerary.json", function(data) {
+                populateItinerary(data, highpoints);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+            });
         }).fail(function(jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
         });
@@ -126,9 +133,51 @@
         }
     }
 
-    function populateItinerary(itinerary) {
+    function populateItinerary(itinerary, highpoints) {
         itinerary.forEach(function (item) {
-            $('#info').append('<h3>Dag ' + item.start_day + ': ' + item.from + ' - ' + item.to + '</h3>')
+            var startPoint = item.from;
+            var storePoints = false;
+            var pointsVisited = [];
+
+            for (var i = 0; i < highpoints.length; ++i) {
+                if (highpoints[i].id == item.from || highpoints[i].name == item.from) {
+                    storePoints = true;
+                }
+
+                if (storePoints) {
+                    pointsVisited.push(highpoints[i]);
+                }
+
+                if (highpoints[i].id == item.to || highpoints[i].name == item.to) {
+                    break;
+                }
+            }
+
+            var html =
+                '<section>' +
+                    '<h3>Dag ' + item.start_day + ': ' + item.from + ' - ' + item.to + '</h3>' +
+                    '<p>';
+
+            pointsVisited.forEach(function (point, index) {
+                if (index > 0) {
+                    html += '<br />';
+                }
+
+                if (point.type == "Sleep") {
+                    html += '<img src="images/camping.png" />';
+                } else if (point.type == "TouristAttraction") {
+                    html += '<img src="images/camera.png" />'; 
+                } else {
+                    html += '<img src="images/mountain.png" />';
+                }
+
+                html += point.name;
+            });
+
+            html += '</p>' +
+                 '</section>';
+
+            $('#info').append(html);
         }); 
     }
 
