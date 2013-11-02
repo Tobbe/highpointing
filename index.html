@@ -26,17 +26,19 @@
             $(this).children().first().next().toggle();
         });
 
+        var highpoints = {};
+
+        var itinerary = new Itinerary();
+        itinerary.onLoadComplete(function() {
+            itinerary.addPointsToItinerary(highpoints);
+            printItinerary(itinerary);
+        });
+
         $.getJSON("pois.geojson", function(data) {
-            var highpoints = prepareGeoHighpoints(data)
+            highpoints = prepareGeoHighpoints(data)
+            itinerary.loadJSON("itinerary.json");
             drawMap(highpoints);
 
-            $.getJSON("itinerary.json", function(data) {
-                var itinerary = new Itinerary(data);
-                itinerary.addPointsToItinerary(highpoints);
-                printItinerary(itinerary);
-            }).fail(function(jqXHR, textStatus, errorThrown) {
-                alert(errorThrown);
-            });
         }).fail(function(jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
         });

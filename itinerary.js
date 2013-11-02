@@ -1,6 +1,16 @@
-function Itinerary(jsonData) {
-    this.itinerary = jsonData;
+function Itinerary() {
+    this.itinerary = [];
+    this.onLoadCompleteFunction = function() {};
 }
+
+Itinerary.prototype.loadJSON = function(jsonPath) {
+    $.getJSON(jsonPath, function(data) {
+        this.itinerary = data;
+        this.onLoadCompleteFunction(this);
+    }.bind(this)).fail(function(jqXHR, textStatus, errorThrown) {
+        alert(errorThrown);
+    });
+};
 
 Itinerary.prototype.addPointsToItinerary = function(pois) {
     this.itinerary.forEach(function (item) {
@@ -23,6 +33,10 @@ Itinerary.prototype.addPointsToItinerary = function(pois) {
 
         item.pointsVisited = pointsVisited;
     });
+};
+
+Itinerary.prototype.onLoadComplete = function(func) {
+    this.onLoadCompleteFunction = func;
 };
 
 Itinerary.prototype.forEach = function(fn) {
