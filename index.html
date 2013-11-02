@@ -8,6 +8,7 @@
     <script src="marker_images.js"></script>
     <script src="route_section.js"></script>
     <script src="route.js"></script>
+    <script src="itinerary.js"></script>
     <style type="text/css">
         html, body { margin: 0; padding: 0; }
         #map_canvas { height: 650px; margin-right: 400px; }
@@ -30,7 +31,9 @@
             drawMap(highpoints);
 
             $.getJSON("itinerary.json", function(data) {
-                populateItinerary(data, highpoints);
+                var itinerary = new Itinerary(data);
+                itinerary.addPointsToItinerary(highpoints);
+                printItinerary(itinerary);
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 alert(errorThrown);
             });
@@ -133,32 +136,14 @@
         }
     }
 
-    function populateItinerary(itinerary, highpoints) {
+    function printItinerary(itinerary) {
         itinerary.forEach(function (item) {
-            var startPoint = item.from;
-            var storePoints = false;
-            var pointsVisited = [];
-
-            for (var i = 0; i < highpoints.length; ++i) {
-                if (highpoints[i].id == item.from || highpoints[i].name == item.from) {
-                    storePoints = true;
-                }
-
-                if (storePoints) {
-                    pointsVisited.push(highpoints[i]);
-                }
-
-                if (highpoints[i].id == item.to || highpoints[i].name == item.to) {
-                    break;
-                }
-            }
-
             var html =
                 '<section>' +
                     '<h3>Dag ' + item.start_day + ': ' + item.from + ' - ' + item.to + '</h3>' +
                     '<p>';
 
-            pointsVisited.forEach(function (point, index) {
+            item.pointsVisited.forEach(function (point, index) {
                 if (index > 0) {
                     html += '<br />';
                 }
