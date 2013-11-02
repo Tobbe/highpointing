@@ -27,45 +27,45 @@
             $(this).children().first().next().toggle();
         });
 
-        var highpoints = {};
+        var pois = {};
 
         var itinerary = new Itinerary();
         itinerary.onLoadComplete(function() {
-            itinerary.addPointsToItinerary(highpoints);
+            itinerary.addPointsToItinerary(pois);
             printItinerary(itinerary);
         });
 
         $.getJSON("pois.geojson", function(data) {
-            highpoints = prepareGeoHighpoints(data)
+            pois = prepareGeoPois(data)
             itinerary.loadJSON("itinerary.json");
-            drawMap(highpoints);
+            drawMap(pois);
 
         }).fail(function(jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
         });
     }
 
-    function prepareGeoHighpoints(data) {
-        var highpoints = [];
-        data.features.forEach(function(highpoint, index) {
-            var highpoint = {
-                "location": new google.maps.LatLng(highpoint.geometry.coordinates[1],
-                                                   highpoint.geometry.coordinates[0]),
-                "name": highpoint.properties.name,
-                "id": highpoint.properties.id,
-                "province": highpoint.properties.province,
-                "visit_order": highpoint.properties.visit_order,
-                "routable_location": highpoint.properties.routable_location,
-                "type": highpoint.properties.type
+    function prepareGeoPois(data) {
+        var pois = [];
+        data.features.forEach(function(poi, index) {
+            var poi = {
+                "location": new google.maps.LatLng(poi.geometry.coordinates[1],
+                                                   poi.geometry.coordinates[0]),
+                "name": poi.properties.name,
+                "id": poi.properties.id,
+                "province": poi.properties.province,
+                "visit_order": poi.properties.visit_order,
+                "routable_location": poi.properties.routable_location,
+                "type": poi.properties.type
             };
 
-            highpoints.push(highpoint);
+            pois.push(poi);
         });
 
-        return highpoints;
+        return pois;
     }
 
-    function drawMap(highpoints) {
+    function drawMap(pois) {
         var markerImages = new MarkerImages();
 
         var infowindow = new google.maps.InfoWindow({
@@ -82,7 +82,7 @@
         });
         directionsRenderer.setMap(map);
 
-        var fullRoute = new Route(directionsService, highpoints);
+        var fullRoute = new Route(directionsService, pois);
         fullRoute.onRouteCompleted(function (routeResults) {
             directionsRenderer.setDirections(routeResults);
 
@@ -90,24 +90,24 @@
         });
 
         function createMarkers() {
-            for (var i = 0; i < highpoints.length; ++i) {
-                var highpoint = highpoints[i];
-                var tenKm = Math.round(highpoint.distanceFromStart / 10000);
+            for (var i = 0; i < pois.length; ++i) {
+                var poi = pois[i];
+                var tenKm = Math.round(poi.distanceFromStart / 10000);
 
-                if (highpoint.type == "Sleep") {
-                    markers.createMarker(map, highpoint.location, highpoint.name,
+                if (poi.type == "Sleep") {
+                    markers.createMarker(map, poi.location, poi.name,
                             "&Ouml;vernattning" +
                             "<br>Avst&aring;nd fr&aring;n start: " + tenKm + " mil",
                             "FF766A", "camping");
-                } else if (highpoint.type == "TouristAttraction") {
-                    markers.createMarker(map, highpoint.location, highpoint.name,
+                } else if (poi.type == "TouristAttraction") {
+                    markers.createMarker(map, poi.location, poi.name,
                             "Avst&aring;nd fr&aring;n start: " + tenKm + " mil",
                             "FCF357", "glyphish_camera");
                 } else {
-                    markers.createMarker(map, highpoint.location, highpoint.name,
-                            "Landskap: " + highpoint.province +
+                    markers.createMarker(map, poi.location, poi.name,
+                            "Landskap: " + poi.province +
                             "<br>Avst&aring;nd fr&aring;n start: " + tenKm + " mil",
-                            "65BA4A", highpoint.id);
+                            "65BA4A", poi.id);
                 }
             }
         }

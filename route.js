@@ -1,48 +1,48 @@
-function Route(directionsService, highpoints) {
+function Route(directionsService, pois) {
     this.completedRouteSections = 0;
-    this.highpoints = highpoints;
-    this.highpointChunks = devideIntoChunks.call(this, highpoints);
+    this.pois = pois;
+    this.poiChunks = devideIntoChunks.call(this, pois);
     this.routeSections = createSections.call(this,
                                              directionsService,
-                                             this.highpointChunks);
+                                             this.poiChunks);
 
     /**
-     * Let's say these are the highpoints:
+     * Let's say these are the Points of Interest (pois):
      *    A B C D E F G H I J K L M N O P Q R S
      *
      * Then we split them in to chunks like this (if each chunk is only
-     * allowed to have six highpoints):
+     * allowed to have six pois):
      *    A B C D E F
      *              F G H I J K
      *                        K L M N O P
      *                                  P Q R S
      *
-     * The reason we have to devide the highpoints into chunks like this is
+     * The reason we have to devide the pois into chunks like this is
      * because of Google's limitations on free accounts.
      */
-    function devideIntoChunks(highpoints) {
-        var HIGHPOINTS_PER_CHUNK = 10;
+    function devideIntoChunks(pois) {
+        var POIS_PER_CHUNK = 10;
         var chunks = [];
-        var chunkStartIndex = 0; // At what highpoint this chunk should start
+        var chunkStartIndex = 0; // At what poi this chunk should start
  
-        while (chunkStartIndex < highpoints.length - 1) {
-            var highpointsSlice = highpoints.slice(chunkStartIndex,
-                                                   chunkStartIndex + HIGHPOINTS_PER_CHUNK);
-            chunks.push(highpointsSlice);
+        while (chunkStartIndex < pois.length - 1) {
+            var poisSlice = pois.slice(chunkStartIndex,
+                                                   chunkStartIndex + POIS_PER_CHUNK);
+            chunks.push(poisSlice);
 
-            chunkStartIndex += (HIGHPOINTS_PER_CHUNK - 1);
+            chunkStartIndex += (POIS_PER_CHUNK - 1);
         }
 
         return chunks;
     }
 
-    function createSections(directionsService, highpointChunks) {
+    function createSections(directionsService, poiChunks) {
         var sections = [];
 
-        highpointChunks.forEach(function (chunk) {
-            var waypoints = chunk.map(function (highpoint) {
+        poiChunks.forEach(function (chunk) {
+            var waypoints = chunk.map(function (poi) {
                 return {
-                    location: highpoint.routable_location || highpoint.location,
+                    location: poi.routable_location || poi.location,
                     stopover: true
                 };
             });
@@ -65,13 +65,13 @@ Route.prototype.routeCompletedForSection = function(routeSection) {
 
     var startOfSection = routeSection.getStart();
 
-    for (var i = 0; i < this.highpointChunks.length; i++) {
+    for (var i = 0; i < this.poiChunks.length; i++) {
     }
 
     if (this.routeSections && 
             this.completedRouteSections == this.routeSections.length) {
 
-        updateHighpointDistances.call(this);
+        updatePoiDistances.call(this);
         this.fullRouteCompleted(combineResults.call(this));
     }
 
@@ -102,8 +102,8 @@ Route.prototype.routeCompletedForSection = function(routeSection) {
         return directionsResult;
     }
 
-    function updateHighpointDistances() {
-        this.highpointChunks.forEach(function (chunk, chunkIndex) {
+    function updatePoiDistances() {
+        this.poiChunks.forEach(function (chunk, chunkIndex) {
             for (var i = 0; i < this.routeSections.length; ++i) {
                 var sect = this.routeSections[i];
 
@@ -114,13 +114,13 @@ Route.prototype.routeCompletedForSection = function(routeSection) {
                     if (chunkIndex === 0) {
                         chunk[0].distanceFromStart = 0;
                     } else {
-                        chunk[0].distanceFromStart = this.highpointChunks[chunkIndex - 1][this.highpointChunks[chunkIndex - 1].length - 1].distanceFromStart;
+                        chunk[0].distanceFromStart = this.poiChunks[chunkIndex - 1][this.poiChunks[chunkIndex - 1].length - 1].distanceFromStart;
                     }
 
                     for (var j = 1; j < chunk.length; ++j) {
-                        var highpoint = chunk[j];
+                        var poi = chunk[j];
 
-                        highpoint.distanceFromStart =
+                        poi.distanceFromStart =
                             chunk[j - 1].distanceFromStart +
                             sect.routes[j - 1].distance.value;
                     }
@@ -128,11 +128,11 @@ Route.prototype.routeCompletedForSection = function(routeSection) {
             }
         }.bind(this));
 
-        for (var i = 0; i < this.highpointChunks.length; ++i) {
-            for (var j = 0; j < this.highpointChunks[i].length; ++j) {
-                var itemsPerChunk = this.highpointChunks[0].length - 1;
-                this.highpoints[i * itemsPerChunk + j].distanceFromStart = 
-                    this.highpointChunks[i][j].distanceFromStart;
+        for (var i = 0; i < this.poiChunks.length; ++i) {
+            for (var j = 0; j < this.poiChunks[i].length; ++j) {
+                var itemsPerChunk = this.poiChunks[0].length - 1;
+                this.pois[i * itemsPerChunk + j].distanceFromStart = 
+                    this.poiChunks[i][j].distanceFromStart;
             }
         }
     }
