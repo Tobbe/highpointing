@@ -1,7 +1,7 @@
-function Route(directionsService, pois) {
+function Route(directionsService, itinerary) {
     this.completedRouteSections = 0;
-    this.pois = pois;
-    this.poiChunks = devideIntoChunks.call(this, pois);
+    this.itinerary = itinerary;
+    this.poiChunks = devideIntoChunks.call(this, itinerary);
     this.routeSections = createSections.call(this,
                                              directionsService,
                                              this.poiChunks);
@@ -20,18 +20,12 @@ function Route(directionsService, pois) {
      * The reason we have to devide the pois into chunks like this is
      * because of Google's limitations on free accounts.
      */
-    function devideIntoChunks(pois) {
-        var POIS_PER_CHUNK = 10;
+    function devideIntoChunks(itinerary) {
         var chunks = [];
-        var chunkStartIndex = 0; // At what poi this chunk should start
- 
-        while (chunkStartIndex < pois.length - 1) {
-            var poisSlice = pois.slice(chunkStartIndex,
-                                                   chunkStartIndex + POIS_PER_CHUNK);
-            chunks.push(poisSlice);
 
-            chunkStartIndex += (POIS_PER_CHUNK - 1);
-        }
+        itinerary.forEach(function (day) {
+            chunks.push(day.pointsVisited);
+        });
 
         return chunks;
     }
@@ -39,7 +33,19 @@ function Route(directionsService, pois) {
     function createSections(directionsService, poiChunks) {
         var sections = [];
 
-        poiChunks.forEach(function (chunk) {
+        // TODO: clean this up
+        for (var i = 0; i < poiChunks.length; ++i) {
+            var chunk = poiChunks[i];
+            setTimeout((function (chnk) {
+                return function() {
+                    pushSection.call(this, chnk);
+                }.bind(this);
+            }).call(this, chunk), 700 * i);
+        }
+
+        return sections;
+
+        function pushSection(chunk) {
             var waypoints = chunk.map(function (poi) {
                 return {
                     location: poi.routable_location || poi.location,
@@ -50,9 +56,7 @@ function Route(directionsService, pois) {
             sections.push(new RouteSection(directionsService,
                                            waypoints,
                                            this.routeCompletedForSection.bind(this)));
-        }.bind(this));
-
-        return sections;
+        }
     }
 }
 
@@ -65,52 +69,25 @@ Route.prototype.routeCompletedForSection = function(routeSection) {
 
     var startOfSection = routeSection.getStart();
 
-    for (var i = 0; i < this.poiChunks.length; i++) {
-    }
-
     if (this.routeSections && 
-            this.completedRouteSections == this.routeSections.length) {
+            this.completedRouteSections == this.poiChunks.length) {
 
         updatePoiDistances.call(this);
-        this.fullRouteCompleted(combineResults.call(this));
-    }
-
-    function combineResults() {
-        var directionsResult = {};
-        directionsResult.status = "OK";
-        directionsResult.Wb = this.routeSections[0].getDirectionsResult().Wb; // NOT future proof. Not part of spec
-        directionsResult.routes = new Array(1);
-        directionsResult.routes[0] = {};
-        var route = directionsResult.routes[0];
-        route.legs = this.routeSections[0].getDirectionsResult().routes[0].legs;
-        route.waypoint_order = this.routeSections[0].getDirectionsResult().routes[0].waypoint_order;
-        route.overview_path = this.routeSections[0].getDirectionsResult().routes[0].overview_path;
-        route.bounds = this.routeSections[0].getDirectionsResult().routes[0].bounds; // Should probably be updated as well
-        route.copyrights = this.routeSections[0].getDirectionsResult().routes[0].copyrights;
-        route.warnings = this.routeSections[0].getDirectionsResult().routes[0].warnings;
-
-        for (var i = 1; i < this.routeSections.length; ++i) {
-            var resultRoute = this.routeSections[i].getDirectionsResult().routes[0];
-            route.legs = route.legs.concat(resultRoute.legs);
-            route.overview_path = route.overview_path.concat(resultRoute.overview_path);
-
-            for (var j = 0; j < route.legs.length - 1; ++j) {
-                route.waypoint_order.push(route.waypoint_order.length + j);
-            }
-        }
-
-        return directionsResult;
+        this.fullRouteCompleted(this.routeSections);
     }
 
     function updatePoiDistances() {
+        var routeSectionStartIndex = 0;
         this.poiChunks.forEach(function (chunk, chunkIndex) {
-            for (var i = 0; i < this.routeSections.length; ++i) {
+            for (var i = routeSectionStartIndex; i < this.routeSections.length; ++i) {
                 var sect = this.routeSections[i];
 
                 if (this.routeSections[i].getStart() == 
                     (chunk[0].routable_location || chunk[0].location)) {
                     // Got the matching chunk and RouteSection
                     
+                    routeSectionStartIndex = i + 1;
+
                     if (chunkIndex === 0) {
                         chunk[0].distanceFromStart = 0;
                     } else {
@@ -124,16 +101,10 @@ Route.prototype.routeCompletedForSection = function(routeSection) {
                             chunk[j - 1].distanceFromStart +
                             sect.routes[j - 1].distance.value;
                     }
+
+                    break;
                 }
             }
         }.bind(this));
-
-        for (var i = 0; i < this.poiChunks.length; ++i) {
-            for (var j = 0; j < this.poiChunks[i].length; ++j) {
-                var itemsPerChunk = this.poiChunks[0].length - 1;
-                this.pois[i * itemsPerChunk + j].distanceFromStart = 
-                    this.poiChunks[i][j].distanceFromStart;
-            }
-        }
     }
 };

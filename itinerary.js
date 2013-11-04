@@ -6,7 +6,7 @@ function Itinerary() {
 Itinerary.prototype.loadJSON = function(jsonPath) {
     $.getJSON(jsonPath, function(data) {
         this.itinerary = data;
-        this.onLoadCompleteFunction(this);
+        this.onLoadCompleteFunction();
     }.bind(this)).fail(function(jqXHR, textStatus, errorThrown) {
         alert(errorThrown);
     });

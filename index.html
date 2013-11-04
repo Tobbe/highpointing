@@ -20,12 +20,18 @@
     </style>
     <script type="text/javascript">
     var map;
-    var mapOptions = { mapTypeId: google.maps.MapTypeId.ROADMAP };
+    var mapOptions = {
+        center: new google.maps.LatLng(60.48430, 15.43397),
+        zoom: 5,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
 
     function initialize() {
         $('#info').on('click', 'section', function () {
             $(this).children().first().next().toggle();
         });
+
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
         var pois = {};
 
@@ -33,13 +39,12 @@
         itinerary.onLoadComplete(function() {
             itinerary.addPointsToItinerary(pois);
             printItinerary(itinerary);
+            drawMap(pois, itinerary);
         });
 
         $.getJSON("pois.geojson", function(data) {
             pois = prepareGeoPois(data)
             itinerary.loadJSON("itinerary.json");
-            drawMap(pois);
-
         }).fail(function(jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
         });
@@ -65,7 +70,7 @@
         return pois;
     }
 
-    function drawMap(pois) {
+    function drawMap(pois, itinerary) {
         var markerImages = new MarkerImages();
 
         var infowindow = new google.maps.InfoWindow({
@@ -74,19 +79,39 @@
 
         var markers = new Markers(infowindow, markerImages);
 
-        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
         directionsService = new google.maps.DirectionsService();
 
-        var directionsRenderer = new google.maps.DirectionsRenderer({
-            suppressMarkers: true,
-        });
-        directionsRenderer.setMap(map);
+        var directionsRenderers = [];
 
-        var fullRoute = new Route(directionsService, pois);
-        fullRoute.onRouteCompleted(function (routeResults) {
-            directionsRenderer.setDirections(routeResults);
+        var fullRoute = new Route(directionsService, itinerary);
+        fullRoute.onRouteCompleted(function(routeSections) {
+            routeSections.forEach(function(section, i) {
+                var color;
+                if (i % 3 === 0) {
+                    color = '#0000FF';
+                } else if ((i + 1) % 3 === 0) {
+                    color = '#999900';
+                } else {
+                    color = '#FF00FF';
+                }
 
-            createMarkers();
+                var directionsRenderer = new google.maps.DirectionsRenderer({
+                    suppressMarkers: true,
+                    map: map,
+                    polylineOptions: {
+                                         strokeColor: color,
+                                         strokeOpacity: 0.5,
+                                         strokeWeight: 5
+                                     }
+                });
+
+                //directionsRenderer.setMap(map);
+                directionsRenderer.setDirections(section.routeResult);
+
+                createMarkers();
+
+                directionsRenderers.push(directionsRenderer);
+            });
         });
 
         function createMarkers() {
