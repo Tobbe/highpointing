@@ -273,7 +273,20 @@
                 "id": "S",
                 "province": "Härjedalen",
                 "visit_order": 20,
-                "routable_location": "Ljungdalen, Sweden"
+                "routable_location": "12.70980, 62.89573"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [12.453, 62.904]
+            },
+            "properties": {
+                "type": "Sleep",
+                "name": "Ljungdalen, Sweden",
+                "id": "S3",
+                "visit_order": 21
             }
         },
         {
@@ -286,7 +299,7 @@
                 "name": "Myckelmyrberget",
                 "id": "T",
                 "province": "Medelpad",
-                "visit_order": 21
+                "visit_order": 22
             }
         },
         {
@@ -298,8 +311,8 @@
             "properties": {
                 "type": "Sleep",
                 "name": "Mörsil",
-                "id": "S3",
-                "visit_order": 22
+                "id": "S4",
+                "visit_order": 23
             }
         },
         {
@@ -312,7 +325,7 @@
                 "name": "Storsylen Rr 155B",
                 "id": "U",
                 "province": "Jämtland",
-                "visit_order": 23,
+                "visit_order": 24,
                 "routable_location": "Storulvåns fjällstation, Duved, Sverige"
             }
         },
@@ -326,7 +339,7 @@
                 "name": "Tåsjöberget",
                 "id": "V",
                 "province": "Ångermanland",
-                "visit_order": 24
+                "visit_order": 25
             }
         },
         {
@@ -339,7 +352,7 @@
                 "name": "Åmliden",
                 "id": "W",
                 "province": "Västerbotten",
-                "visit_order": 25
+                "visit_order": 26
             }
         },
         {
@@ -352,7 +365,7 @@
                 "name": "Vitberget",
                 "id": "X",
                 "province": "Norrbotten",
-                "visit_order": 26
+                "visit_order": 27
             }
         },
         {
@@ -364,8 +377,8 @@
             "properties": {
                 "type": "Sleep",
                 "name": "Jokkmokk",
-                "id": "S4",
-                "visit_order": 27
+                "id": "S5",
+                "visit_order": 28
             }
         },
         {
@@ -377,8 +390,8 @@
             "properties": {
                 "type": "Sleep",
                 "name": "Nikkaluokta",
-                "id": "S5",
-                "visit_order": 28
+                "id": "S6",
+                "visit_order": 29
             }
         },
         {
@@ -391,7 +404,7 @@
                 "name": "Kebnekaise",
                 "id": "Y",
                 "province": "Lappland",
-                "visit_order": 29,
+                "visit_order": 30,
                 "routable_location": "Nikkaluokta, Sweden"
             }
         },
@@ -405,7 +418,7 @@
                 "type": "TouristAttraction",
                 "name": "Treriksröset",
                 "id": "TA1",
-                "visit_order": 30,
+                "visit_order": 31,
                 "routable_location": "Kilpisjärvi, Finland"
             }
         },
@@ -418,8 +431,8 @@
             "properties": {
                 "type": "Sleep",
                 "name": "Alta",
-                "id": "S6",
-                "visit_order": 31
+                "id": "S7",
+                "visit_order": 32
             }
         },
         {
@@ -432,7 +445,7 @@
                 "type": "TouristAttraction",
                 "name": "Nordkap",
                 "id": "TA2",
-                "visit_order": 32
+                "visit_order": 33
             }
         }
     ]
