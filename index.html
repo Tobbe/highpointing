@@ -79,7 +79,6 @@
         });
 
         var markers = new Markers(infowindow, markerImages);
-        setTimeout(createMarkers, 5000);
 
         pois[0].distanceFromStart = 0;
 
@@ -97,6 +96,8 @@
 
                 pois[index + 1].distanceFromStart = pois[index].distanceFromStart + element.distance;
             });
+
+            createMarkers();
         }).fail(function(jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
         });
