@@ -14,10 +14,11 @@
     <script src="itinerary.js"></script>
     <style type="text/css">
         html, body { margin: 0; padding: 0; }
-        #map_canvas { height: 650px; margin-right: 400px; }
+        #map_canvas { height: 750px; margin-right: 400px; }
         #info { float: right; width: 400px; }
         #info img { vertical-align: bottom; margin-right: 5px; }
         #info p { display: none; }
+        .noscrollbar_infowindow { line-height: 1.35; overflow: hidden; white-space: nowrap; }
     </style>
     <script type="text/javascript">
     var map;
@@ -75,7 +76,6 @@
         var markerImages = new MarkerImages();
 
         var infowindow = new google.maps.InfoWindow({
-            size: new google.maps.Size(150,50)
         });
 
         var markers = new Markers(infowindow, markerImages);

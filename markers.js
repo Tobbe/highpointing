@@ -9,7 +9,9 @@ Markers.prototype.createMarker = function (map, latlng, label, html, color, symb
     marker.onClick(function(infoWnd) {
         var infowindow = infoWnd;
         return function() {
-            var contentString = '<b>'+label+'</b><br>'+html;
+            var contentString = '<div class="noscrollbar_infowindow">' +
+                                    '<b>'+label+'</b><br>'+html+
+                                '</div>';
             infowindow.setContent(contentString);
             infowindow.open(map, marker.getGoogleMarker());
         };
