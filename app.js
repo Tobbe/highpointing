@@ -13,5 +13,5 @@ routeCreator.on('route_written', function(file) {
     console.log('route written');
 });
 
-var url = "https://github.com/Tobbe/highpointing.git";
-gitFileDownloader.getFile("pois.geojson", url);
+var repoPath = ".git";
+gitFileDownloader.getFile("pois.geojson", repoPath);
