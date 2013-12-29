@@ -273,14 +273,14 @@
                 "id": "S",
                 "province": "Härjedalen",
                 "visit_order": 20,
-                "routable_location": "12.70980, 62.89573"
+                "routable_location": "62.89573,12.70980" 
             }
         },
         {
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [12.453, 62.904]
+                "coordinates": [12.70980, 62.89572]
             },
             "properties": {
                 "type": "Sleep",
