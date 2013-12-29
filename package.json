@@ -1,0 +1,9 @@
+{
+  "name": "highpointing",
+  "description": "Cache google routing waypoints to increase performance",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "googlemaps": "~0.1.9"
+  }
+}
