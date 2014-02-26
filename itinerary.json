@@ -1,7 +1,7 @@
 [
 {
     "start_day": 1,
-    "from": "A",
+    "from": "Flerohopp (Start)",
     "to": "D"
 },
 {
@@ -102,7 +102,7 @@
 {
     "start_day": 21,
     "from": "Nordkap",
-    "to": "Flerohopp",
+    "to": "Flerohopp (Finish)",
     "days": 5
 }
 ]

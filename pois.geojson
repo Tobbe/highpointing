@@ -5,13 +5,26 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
+                "coordinates": [15.864676, 56.824189]
+            },
+            "properties": {
+                "type": "Sleep",
+                "name": "Flerohopp (Start)",
+                "id": "S1",
+                "visit_order": 0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
                 "coordinates": [13.13825, 56.0652]
             },
             "properties": {
                 "name": "Magleröd, Söderåsen",
                 "id": "A",
                 "province": "Skåne",
-                "visit_order": 0
+                "visit_order": 1
             }
         },
         {
@@ -24,7 +37,7 @@
                 "name": "Högalteknall",
                 "id": "B",
                 "province": "Halland",
-                "visit_order": 1
+                "visit_order": 2
             }
         },
         {
@@ -37,7 +50,7 @@
                 "name": "Rävabacken",
                 "id": "C",
                 "province": "Blekinge",
-                "visit_order": 2
+                "visit_order": 3
             }
         },
         {
@@ -50,7 +63,7 @@
                 "name": "Rösslösa",
                 "id": "D",
                 "province": "Öland",
-                "visit_order": 3
+                "visit_order": 4
             }
         },
         {
@@ -63,7 +76,7 @@
                 "name": "Lojstahajd",
                 "id": "E",
                 "province": "Gotland",
-                "visit_order": 4
+                "visit_order": 5
             }
         },
         {
@@ -75,8 +88,8 @@
             "properties": {
                 "type": "Sleep",
                 "name": "Målilla",
-                "id": "S1",
-                "visit_order": 5
+                "id": "S2",
+                "visit_order": 6
             }
         },
         {
@@ -89,7 +102,7 @@
                 "name": "Stenabo",
                 "id": "F",
                 "province": "Östergötland",
-                "visit_order": 6
+                "visit_order": 7
             }
         },
         {
@@ -102,7 +115,7 @@
                 "name": "Tomtabacken",
                 "id": "G",
                 "province": "Småland",
-                "visit_order": 7
+                "visit_order": 8
             }
         },
         {
@@ -115,7 +128,7 @@
                 "name": "Galtåsen",
                 "id": "H",
                 "province": "Västergötland",
-                "visit_order": 8
+                "visit_order": 9
             }
         },
         {
@@ -128,7 +141,7 @@
                 "name": "Björnerödspiggen",
                 "id": "I",
                 "province": "Bohuslän",
-                "visit_order": 9
+                "visit_order": 10
             }
         },
         {
@@ -141,7 +154,7 @@
                 "name": "Baljåsen",
                 "id": "J",
                 "province": "Dalslands",
-                "visit_order": 10 
+                "visit_order": 11 
             }
         },
         {
@@ -154,7 +167,7 @@
                 "name": "Kilsbergen (Tomasboda)",
                 "id": "K",
                 "province": "Närke",
-                "visit_order": 11
+                "visit_order": 12
             }
         },
         {
@@ -167,7 +180,7 @@
                 "name": "Skogsbyås",
                 "id": "L",
                 "province": "Södermanland",
-                "visit_order": 12
+                "visit_order": 13
             }
         },
         {
@@ -180,7 +193,7 @@
                 "name": "Tallmossen",
                 "id": "M",
                 "province": "Uppland",
-                "visit_order": 13
+                "visit_order": 14
             }
         },
         {
@@ -193,7 +206,7 @@
                 "name": "Fjällberget",
                 "id": "N",
                 "province": "Västmanland",
-                "visit_order": 14
+                "visit_order": 15
             }
         },
         {
@@ -206,7 +219,7 @@
                 "name": "Granberget, Höljes",
                 "id": "O",
                 "province": "Värmland",
-                "visit_order": 15
+                "visit_order": 16
             }
         },
         {
@@ -218,8 +231,8 @@
             "properties": {
                 "type": "Sleep",
                 "name": "Mora",
-                "id": "S2",
-                "visit_order": 16
+                "id": "S3",
+                "visit_order": 17
             }
         },
         {
@@ -232,7 +245,7 @@
                 "name": "Lustigknopp",
                 "id": "P",
                 "province": "Gästrikland",
-                "visit_order": 17
+                "visit_order": 18
             }
         },
         {
@@ -245,7 +258,7 @@
                 "name": "Granåsen (Garpknölen)",
                 "id": "Q",
                 "province": "Hälsingland",
-                "visit_order": 18
+                "visit_order": 19
             }
         },
         {
@@ -258,7 +271,7 @@
                 "name": "Storvätteshågna",
                 "id": "R",
                 "province": "Dalarna",
-                "visit_order": 19,
+                "visit_order": 20,
                 "routable_location": "Grövelsjön, Sweden"
             }
         },
@@ -272,7 +285,7 @@
                 "name": "Helagsfjället",
                 "id": "S",
                 "province": "Härjedalen",
-                "visit_order": 20,
+                "visit_order": 21,
                 "routable_location": "62.89573,12.70980" 
             }
         },
@@ -285,8 +298,8 @@
             "properties": {
                 "type": "Sleep",
                 "name": "Ljungdalen",
-                "id": "S3",
-                "visit_order": 21
+                "id": "S4",
+                "visit_order": 22
             }
         },
         {
@@ -299,7 +312,7 @@
                 "name": "Myckelmyrberget",
                 "id": "T",
                 "province": "Medelpad",
-                "visit_order": 22
+                "visit_order": 23
             }
         },
         {
@@ -311,8 +324,8 @@
             "properties": {
                 "type": "Sleep",
                 "name": "Mörsil",
-                "id": "S4",
-                "visit_order": 23
+                "id": "S5",
+                "visit_order": 24
             }
         },
         {
@@ -325,7 +338,7 @@
                 "name": "Storsylen Rr 155B",
                 "id": "U",
                 "province": "Jämtland",
-                "visit_order": 24,
+                "visit_order": 25,
                 "routable_location": "Storulvåns fjällstation, Duved, Sverige"
             }
         },
@@ -339,7 +352,7 @@
                 "name": "Tåsjöberget",
                 "id": "V",
                 "province": "Ångermanland",
-                "visit_order": 25
+                "visit_order": 26
             }
         },
         {
@@ -352,7 +365,7 @@
                 "name": "Åmliden",
                 "id": "W",
                 "province": "Västerbotten",
-                "visit_order": 26
+                "visit_order": 27
             }
         },
         {
@@ -365,7 +378,7 @@
                 "name": "Vitberget",
                 "id": "X",
                 "province": "Norrbotten",
-                "visit_order": 27
+                "visit_order": 28
             }
         },
         {
@@ -377,8 +390,8 @@
             "properties": {
                 "type": "Sleep",
                 "name": "Jokkmokk",
-                "id": "S5",
-                "visit_order": 28
+                "id": "S6",
+                "visit_order": 29
             }
         },
         {
@@ -390,8 +403,8 @@
             "properties": {
                 "type": "Sleep",
                 "name": "Nikkaluokta",
-                "id": "S6",
-                "visit_order": 29
+                "id": "S7",
+                "visit_order": 30
             }
         },
         {
@@ -404,7 +417,7 @@
                 "name": "Kebnekaise",
                 "id": "Y",
                 "province": "Lappland",
-                "visit_order": 30,
+                "visit_order": 31,
                 "routable_location": "Nikkaluokta, Sweden"
             }
         },
@@ -418,7 +431,7 @@
                 "type": "TouristAttraction",
                 "name": "Treriksröset",
                 "id": "TA1",
-                "visit_order": 31,
+                "visit_order": 32,
                 "routable_location": "Kilpisjärvi, Finland"
             }
         },
@@ -431,8 +444,8 @@
             "properties": {
                 "type": "Sleep",
                 "name": "Alta",
-                "id": "S7",
-                "visit_order": 32
+                "id": "S8",
+                "visit_order": 33
             }
         },
         {
@@ -445,7 +458,7 @@
                 "type": "TouristAttraction",
                 "name": "Nordkap",
                 "id": "TA2",
-                "visit_order": 33,
+                "visit_order": 34,
                 "routable_location": "Honningsvåg"
             }
         },
@@ -453,13 +466,13 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [15.875276, 56.822404]
+                "coordinates": [15.885039, 56.822663]
             },
             "properties": {
                 "type": "Sleep",
-                "name": "Flerohopp",
-                "id": "S8",
-                "visit_order": 34
+                "name": "Flerohopp (Finish)",
+                "id": "S9",
+                "visit_order": 35 
             }
         }
     ]
