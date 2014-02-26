@@ -445,7 +445,8 @@
                 "type": "TouristAttraction",
                 "name": "Nordkap",
                 "id": "TA2",
-                "visit_order": 33
+                "visit_order": 33,
+                "routable_location": "Honningsvåg"
             }
         }
     ]
