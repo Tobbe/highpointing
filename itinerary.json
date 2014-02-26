@@ -47,11 +47,11 @@
 {
     "start_day": 10,
     "from": "S",
-    "to": "S3"
+    "to": "Ljungdalen"
 },
 {
     "start_day": 11,
-    "from": "S",
+    "from": "Ljungdalen",
     "to": "Mörsil"
 },
 {
