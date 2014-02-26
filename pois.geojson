@@ -448,6 +448,19 @@
                 "visit_order": 33,
                 "routable_location": "Honningsvåg"
             }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [15.875276, 56.822404]
+            },
+            "properties": {
+                "type": "Sleep",
+                "name": "Flerohopp",
+                "id": "S8",
+                "visit_order": 34
+            }
         }
     ]
 }
