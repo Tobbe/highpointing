@@ -82,23 +82,57 @@
 
         pois[0].distanceFromStart = 0;
 
-        $.getJSON("polyline.json", function(data) {
-            data.forEach(function (element, index) {
-                element.polyline.forEach(function (segment) {
-                    var line = new google.maps.Polyline({
-                        path: google.maps.geometry.encoding.decodePath(segment),
-                        strokeColor: '#FF00FF',
-                        strokeOpacity: 0.5,
-                        strokeWeight: 5,
-                        map: map
+        console.log(itinerary.length);
+
+        $.getJSON("polyline.json", function(itnry) {
+            var itinerary = itnry;
+            return function(data) {
+                data.forEach(function (element, polylineIndex) {
+                    var strokeColor = getColor(getDay());
+                    element.polyline.forEach(function (segment) {
+                        var line = new google.maps.Polyline({
+                            path: google.maps.geometry.encoding.decodePath(segment),
+                            strokeColor: strokeColor,
+                            strokeOpacity: 0.5,
+                            strokeWeight: 5,
+                            map: map
+                        });
                     });
+
+                    pois[polylineIndex + 1].distanceFromStart = pois[polylineIndex].distanceFromStart +
+                                                        element.distance;
+
+                    function getDay() {
+                        var poisThisFar = 0;
+                        var dayWeAreDrawing = -1;
+                        itinerary.forEach(function (day, i) {
+                            poisThisFar += day.pointsVisited.length - 1;
+
+                            if (polylineIndex < poisThisFar) {
+                                dayWeAreDrawing = i;
+                                return false; // Stop iteration
+                            }
+                        });
+                        return dayWeAreDrawing;
+                    }
+
+                    function getColor(day) {
+                        var color;
+                        if (day % 3 === 0) {
+                            color = '#0000FF';
+                        } else if ((day + 1) % 3 === 0) {
+                            color = '#999900';
+                        } else {
+                            color = '#FF00FF';
+                        }
+
+                        return color;
+                    }
                 });
 
-                pois[index + 1].distanceFromStart = pois[index].distanceFromStart + element.distance;
-            });
-
-            createMarkers();
-        }).fail(function(jqXHR, textStatus, errorThrown) {
+                createMarkers();
+            };
+        }(itinerary)).fail(function(jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
         });
 
